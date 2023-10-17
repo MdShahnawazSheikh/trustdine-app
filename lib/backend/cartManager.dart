@@ -28,7 +28,7 @@ class CartManager {
   }
 
   Map<String, Map<String, dynamic>> cartData = {};
-  void pushCartToFirestore(String orderId) async {
+  void pushCartToFirestore(String orderId, String ModeOfPayment) async {
     // Create a map to store the cart data
 
     for (AddedProduct product in _addedProducts) {
@@ -37,6 +37,7 @@ class CartManager {
         'Size': product.size,
         'Price': product.price,
         'Quantity': product.quantity,
+        'payment mode': ModeOfPayment
       };
     }
 

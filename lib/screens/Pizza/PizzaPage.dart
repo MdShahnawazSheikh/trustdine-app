@@ -3,6 +3,7 @@ import 'package:trustdine/backend/api_processes.dart';
 import 'package:trustdine/components/NetworkProductCardTwoRow.dart';
 import 'package:trustdine/components/ProductCardTwoRow.dart';
 import 'package:trustdine/components/app_bar.dart';
+import 'package:trustdine/components/custom_modal_sheet.dart';
 import 'package:trustdine/components/network_product_info_medium_card.dart';
 import 'package:trustdine/components/product_info_medium_card.dart';
 import 'package:trustdine/components/section_title.dart';
@@ -40,7 +41,16 @@ class _PizzaPageState extends State<PizzaPage> {
               child: SectionTitle(
                 buttonText: "See All",
                 title: "Veg Pizza",
-                press: () {},
+                press: () {
+                  CustomModalSheet(
+                    context,
+                    screenHeight,
+                    screenWidth,
+                    cardHeight,
+                    "Veg Pizza",
+                    PizzaVeg,
+                  );
+                },
               ),
             ),
           ),
@@ -74,7 +84,16 @@ class _PizzaPageState extends State<PizzaPage> {
               child: SectionTitle(
                 buttonText: "See All",
                 title: "Non-Veg Pizza",
-                press: () {},
+                press: () {
+                  CustomModalSheet(
+                    context,
+                    screenHeight,
+                    screenWidth,
+                    cardHeight,
+                    "Non-Veg Pizza",
+                    PizzaNonVeg,
+                  );
+                },
               ),
             ),
           ),

@@ -210,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   screenHeight,
                                   screenWidth,
                                   cardHeight,
-                                  "Pizza Spotlight",
+                                  "Spotlight",
                                   SpotlightFoods);
                             }),
                       ),

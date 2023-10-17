@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 String baseUrl =
-    "http://ec2-43-204-235-212.ap-south-1.compute.amazonaws.com:5001/api";
+    "http://ec2-13-233-224-234.ap-south-1.compute.amazonaws.com:5001/api";
 
 Future<Map<String, dynamic>> loginUser(String email, String password) async {
   final response = await http.post(

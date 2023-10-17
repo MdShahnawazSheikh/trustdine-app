@@ -45,7 +45,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
         ),
       ),
     );
-    CartManager().pushCartToFirestore(paymentId);
+    CartManager().pushCartToFirestore(paymentId, "razorpay");
     printReceipt(paymentId);
     Timer(Duration(seconds: 5), () {
       CartManager().clearCart();
@@ -80,7 +80,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
           ),
         ));
 
-    CartManager().pushCartToFirestore(orderID);
+    CartManager().pushCartToFirestore(orderID, "Cash");
     printReceipt(orderID);
     await Future.delayed(Duration(seconds: 3), () {
       CartManager().clearCart();

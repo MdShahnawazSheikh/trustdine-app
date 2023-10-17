@@ -96,10 +96,10 @@ class NetworkProductCardTwoRow extends StatelessWidget {
                       ),
                       Container(
                         height: cardHeight / 12,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: defaultPadding / 2,
-                          vertical: defaultPadding / 8,
-                        ),
+                        // padding: const EdgeInsets.symmetric(
+                        //   horizontal: defaultPadding / 2,
+                        //   vertical: defaultPadding / 8,
+                        // ),
                         child: Image.asset(
                           pathOfType,
                           fit: BoxFit.fill,
@@ -130,12 +130,12 @@ class NetworkProductCardTwoRow extends StatelessWidget {
                         width: screenHeight > screenWidth
                             ? (cardHeight / 3)
                             : (cardHeight / 2),
-                        child: Text(
-                          size,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        child: Text("₹ $price"),
                       ),
-                      Text("₹ $price"),
+                      Text(
+                        size,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ],
                   ),
                   const SizedBox(

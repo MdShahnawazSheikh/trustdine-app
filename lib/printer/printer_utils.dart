@@ -58,9 +58,11 @@ class PrinterUtils {
     if (await isConnected) {
       try {
         _printer.printNewLine();
-        _printer.printCustom("**************************", 1, 1);
+        _printer.printCustom("==========================", 1, 1);
+        _printer.printNewLine();
         _printer.printCustom("${InvoiceData[0]['companyName']}", 2, 1);
-        _printer.printCustom("**************************", 1, 1);
+        _printer.printNewLine();
+        _printer.printCustom("==========================", 1, 1);
         _printer.printNewLine();
         _printer.printNewLine();
         _printer.printNewLine();
@@ -92,10 +94,10 @@ class PrinterUtils {
         _printer.printNewLine();
         _printer.printNewLine();
         _printer.printCustom("**************************", 1, 1);
-        _printer.printNewLine();
         _printer.printCustom("${InvoiceData[0]['footerText']}", 1, 1);
-        _printer.printNewLine();
         _printer.printCustom("**************************", 1, 1);
+        _printer.printNewLine();
+        _printer.printNewLine();
         _printer.printNewLine();
       } catch (e) {
         print(e);
