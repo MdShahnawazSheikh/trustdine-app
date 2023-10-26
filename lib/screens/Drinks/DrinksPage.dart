@@ -59,6 +59,8 @@ class _DrinksPageState extends State<DrinksPage> {
                     price: productsByCategory['Drinks']?[index]['price'],
                     rating: productsByCategory['Drinks']?[index]['rating'],
                     type: productsByCategory['Drinks']?[index]['type'],
+                    description: productsByCategory['Drinks']?[index]
+                        ['description'],
                   );
                 },
               ),

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/constants.dart';
+import 'package:trustdine/screens/ProductsDetailsPage/product_details_page.dart';
 
 // Todo: if product is veg show green or show red
 
 class NetworkProductCardTwoRow extends StatelessWidget {
-  final String image, name, category, size, rating, type;
+  final String image, name, category, size, rating, type, description;
   final double price;
   final VoidCallback onPress;
   const NetworkProductCardTwoRow(
@@ -19,7 +20,8 @@ class NetworkProductCardTwoRow extends StatelessWidget {
       required this.price,
       required this.rating,
       required this.onPress,
-      required this.type});
+      required this.type,
+      required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,20 @@ class NetworkProductCardTwoRow extends StatelessWidget {
       cardHeight = screenWidth / 2.5;
     }
     return GestureDetector(
+      onLongPress: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetails(
+                image: image,
+                name: name,
+                category: category,
+                price: price,
+                size: size,
+                description: description,
+              ),
+            ));
+      },
       onTap: () {
         final productToAdd = AddedProduct(name, price, 1, image, size);
         // Add the product to the cart using CartManager

@@ -58,6 +58,7 @@ class _BurgerPageState extends State<BurgerPage> {
                       price: BurgerVeg[index]['price'],
                       category: BurgerVeg[index]['category'],
                       type: BurgerVeg[index]['type'],
+                      description: BurgerVeg[index]['description'],
                     ),
                   ),
                 ),
@@ -92,6 +93,7 @@ class _BurgerPageState extends State<BurgerPage> {
                       price: BurgerNonVeg[index]['price'],
                       category: BurgerNonVeg[index]['category'],
                       type: BurgerNonVeg[index]['type'],
+                      description: BurgerNonVeg[index]['description'],
                     ),
                   ),
                 ),
@@ -134,6 +136,7 @@ class _BurgerPageState extends State<BurgerPage> {
                       price: BurgerData[index]['price'],
                       rating: BurgerData[index]['rating'],
                       type: BurgerData[index]['type'],
+                      description: BurgerData[index]['description'],
                     );
                   },
                 ),

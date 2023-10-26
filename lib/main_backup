@@ -3,9 +3,7 @@ import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.da
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:trustdine/backend/central_api.dart';
 import 'package:trustdine/backend/api_processes.dart';
 import 'package:trustdine/screens/Burger/BurgerPage.dart';
@@ -77,9 +75,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     // print(loginUser("admin@gmail.com", "admin")); //need help printing here
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-    ));
+    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    //   statusBarColor: Colors.white,
+    // ));
 
     return MaterialApp(
       // start
@@ -118,7 +116,7 @@ class _HomeScreenNavigationState extends State<HomeScreenNavigation> {
   void _onItemTapped(int index) {
     _pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 150),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }

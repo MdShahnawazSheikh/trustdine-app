@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trustdine/backend/qr_logic.dart';
+import 'package:trustdine/components/home_button.dart';
 import 'dart:async';
 
 import 'package:trustdine/main.dart';
@@ -84,6 +85,7 @@ class _CashPaymentState extends State<CashPayment> {
               'Redirecting in $_secondsRemaining seconds...',
               style: const TextStyle(fontSize: 16),
             ),
+            GoHomeButton(),
           ],
         ),
       ),

@@ -82,10 +82,11 @@ Future<void> fetchData() async {
       Map<String, dynamic> foodData = {
         'name': food['foodName'],
         'image': food['foodImg'],
-        'rating': food['foodDiscount'],
+        'rating': "not applicable on this app",
         'size': food['foodSize'],
         'price': double.parse(food['foodPrice']),
         'category': food['categoryName'],
+        'description': food['foodDisc'],
         'id': food['_id'],
         'type': food['foodType'],
         'featured': food['featured'],
@@ -136,9 +137,6 @@ Future<void> fetchData() async {
   // for (var product in productsByCategory['Pizza']!) {
   //   print(product['name']);
   // }
-  for (var element in productsByCategory['Pizza']!) {
-    print(element['name']);
-  }
 }
 
 bool checkExisting(String iD, List data) {

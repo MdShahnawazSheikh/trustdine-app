@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/api_processes.dart';
 import 'package:trustdine/printer/printer_dialog.dart';
 import 'package:trustdine/printer/printer_utils.dart';
+import 'package:trustdine/screens/SplashScreen/splash_screen.dart';
 
 class CustomSliverAppBar extends StatefulWidget {
   final double logoWidth;
@@ -25,11 +26,20 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
         padding: const EdgeInsets.only(bottom: 8),
         child: GestureDetector(
           onTap: () async {
-            await PrinterUtils().newLine();
-            await PrinterUtils().printData("Test Print");
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SplashScreen(),
+                ));
+            try {
+              await PrinterUtils().newLine();
+              await PrinterUtils().printData("Test Print");
 
-            // Show a toast or any other feedback to the user
-            Fluttertoast.showToast(msg: "Printing QR Code...");
+              // Show a toast or any other feedback to the user
+              Fluttertoast.showToast(msg: "Printing QR Code...");
+            } catch (e) {
+              Fluttertoast.showToast(msg: "No printer connected");
+            }
           },
           onLongPress: () {
             showDialog(

@@ -42,6 +42,7 @@ class ProductsGridPage extends StatelessWidget {
                       price: products[index]['price'],
                       rating: products[index]['rating'],
                       type: products[index]['type'],
+                      description: products[index]['description'],
                       onPress: () {});
                 },
               )

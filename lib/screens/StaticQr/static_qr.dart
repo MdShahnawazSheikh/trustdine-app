@@ -7,7 +7,7 @@ import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/backend/checkout.dart';
 import 'package:trustdine/backend/qr_logic.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:trustdine/backend/static_qr_pay_success_page.dart';
+import 'package:trustdine/screens/PaymentSuccessfull/static_qr_pay_success_page.dart';
 import 'package:trustdine/main.dart';
 import 'package:trustdine/printer/printer_utils.dart';
 import 'package:trustdine/screens/Cart/CartPage.dart';

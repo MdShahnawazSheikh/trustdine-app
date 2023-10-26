@@ -67,11 +67,14 @@ class _ImageCarouselState extends State<ImageCarousel> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: Container(
-                              color: Colors.white,
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Container(
+                                color: Colors.white,
+                              ),
                             ),
                           );
                         } else if (snapshot.hasError) {
@@ -81,6 +84,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
                           return ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: CachedNetworkImage(
+                              fadeInDuration: Duration(microseconds: 0),
                               imageUrl: CarouselData[index],
                               fit: BoxFit.cover,
                             ),

@@ -6,7 +6,7 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/apiData.dart';
 import 'package:trustdine/backend/cartManager.dart';
-import 'package:trustdine/backend/cashPage.dart';
+import 'package:trustdine/screens/PaymentSuccessfull/cashPage.dart';
 import 'package:trustdine/backend/central_api.dart';
 import 'package:trustdine/backend/paymentSuccessPage.dart';
 import 'package:trustdine/main.dart';

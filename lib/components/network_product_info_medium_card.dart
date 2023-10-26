@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/constants.dart';
+import 'package:trustdine/screens/ProductsDetailsPage/product_details_page.dart';
 
 class NetworkProductInfoMediumCard extends StatelessWidget {
   const NetworkProductInfoMediumCard({
@@ -15,8 +16,9 @@ class NetworkProductInfoMediumCard extends StatelessWidget {
     required this.press,
     required this.category,
     required this.type,
+    required this.description,
   });
-  final String rating, productName, image, size, category, type;
+  final String rating, productName, image, size, category, type, description;
   final double price;
   final VoidCallback press;
 
@@ -33,6 +35,17 @@ class NetworkProductInfoMediumCard extends StatelessWidget {
     }
     return InkWell(
       borderRadius: BorderRadius.circular(6),
+      onLongPress: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetails(
+                image: image,
+                name: productName,
+                category: category,
+                price: price,
+                size: size,
+                description: description),
+          )),
       onTap: () {
         final productToAdd = AddedProduct(productName, price, 1, image, size);
         // Add the product to the cart using CartManager

@@ -64,6 +64,7 @@ Future<dynamic> CustomModalSheet(
                       price: yourData[index]['price'],
                       rating: yourData[index]['rating'],
                       type: yourData[index]['type'],
+                      description: yourData[index]['description'],
                     );
                   },
                 ),

@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:intl/intl.dart';
 import 'package:blue_thermal_printer/blue_thermal_printer.dart';
 import 'package:trustdine/apiData.dart';
 import 'package:trustdine/backend/api_processes.dart';
@@ -58,13 +58,12 @@ class PrinterUtils {
     if (await isConnected) {
       try {
         _printer.printNewLine();
-        _printer.printCustom("==========================", 1, 1);
-        _printer.printNewLine();
+        // _printer.printImage("trustdine_logo.png");
+        _printer.printCustom("**************************", 1, 1);
+        // _printer.printNewLine();
         _printer.printCustom("${InvoiceData[0]['companyName']}", 2, 1);
-        _printer.printNewLine();
-        _printer.printCustom("==========================", 1, 1);
-        _printer.printNewLine();
-        _printer.printNewLine();
+        // _printer.printNewLine();
+        _printer.printCustom("**************************", 1, 1);
         _printer.printNewLine();
         _printer.printCustom(
           "${InvoiceData[0]['companyAddress']}",
@@ -73,10 +72,16 @@ class PrinterUtils {
         );
         _printer.printCustom("GSTIN: ${InvoiceData[0]['GSTIN']}", 1, 1);
         _printer.printCustom("${InvoiceData[0]['companyEmail']}", 1, 1);
+        DateTime now = DateTime.now();
+        String formattedDateTime =
+            DateFormat('yyyy-MM-dd HH:mm:ss').format(now);
+        _printer.printCustom("$formattedDateTime", 1, 1);
+
         _printer.printNewLine();
-        _printer.printQRcode(orderID, 250, 250, 2);
+        _printer.printQRcode(orderID, 250, 250, 1);
         _printer.printCustom("----------------------------", 1, 1);
         _printer.printCustom("Item       Qty        Price", 1, 1);
+        _printer.printCustom("----------------------------", 1, 1);
         _printer.printNewLine();
         for (AddedProduct item in CartManager().addedProducts) {
           _printer.printCustom(
@@ -87,6 +92,8 @@ class PrinterUtils {
         }
 
         _printer.printCustom("----------------------------", 1, 1);
+        /*  _printer.printLeftRight(
+            "   Total", "${totalAmount.toStringAsFixed(2)} INR  ", 1); */
         _printer.printNewLine();
         _printer.printNewLine();
         _printer.printCustom(
@@ -95,8 +102,8 @@ class PrinterUtils {
         _printer.printNewLine();
         _printer.printCustom("**************************", 1, 1);
         _printer.printCustom("${InvoiceData[0]['footerText']}", 1, 1);
+        _printer.printCustom("\nYour Order ID: $orderID", 1, 1);
         _printer.printCustom("**************************", 1, 1);
-        _printer.printNewLine();
         _printer.printNewLine();
         _printer.printNewLine();
       } catch (e) {
