@@ -1,5 +1,7 @@
 # TrustDine Closed Beta Changelog
 
+## [Download Latest Version](https://github.com/MdShahnawazSheikh/trustdine-closed-beta/raw/main/release/closed-beta-2.5.2.apk)
+
 ## [Version 1.1.0](#) (October 10, 2023)
 - Initial beta release of TrustDine app.
 - New and improved UI.
