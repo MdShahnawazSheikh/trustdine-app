@@ -1,4 +1,4 @@
-<img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="300px"/>
+<img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="200px"/>
 
 
 
