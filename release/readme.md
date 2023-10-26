@@ -1,3 +1,9 @@
+<img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="100px"/>
+
+
+
+
+
 # TrustDine Closed Beta Changelog
 
 ## [Download Latest Version](https://github.com/MdShahnawazSheikh/trustdine-closed-beta/raw/main/release/closed-beta-2.5.2.apk)
