@@ -6,6 +6,8 @@
 
 
 
+
+
 ## [Download Latest Version](https://github.com/MdShahnawazSheikh/trustdine-closed-beta/raw/main/release/closed-beta-2.5.2.apk)
 ### Version 2.5.2 Available Now.
 
@@ -13,6 +15,7 @@
 - Addressed an issue where app showed blank screen when it received other than Veg and Non Veg as product type.
 - Fixed minor UI glitches and improved app stability.
 
+---
 # TrustDine Closed Beta Changelog
 ## Version History:
 ## [Version 2.5.2](#) (October 26, 2023)
