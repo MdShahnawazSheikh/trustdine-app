@@ -37,7 +37,8 @@ class CartManager {
         'Size': product.size,
         'Price': product.price,
         'Quantity': product.quantity,
-        'payment mode': ModeOfPayment
+        'payment mode': ModeOfPayment,
+        'fulfilled': 'no'
       };
     }
 
