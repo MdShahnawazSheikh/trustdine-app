@@ -2,6 +2,8 @@
 
 Welcome to TrustDine, your ultimate solution for hassle-free restaurant food ordering through kiosk machines! With our intuitive Android app, customers can conveniently browse menus, customize orders, and pay securely, all at the touch of a screen. Enhance your dining experience and save time by skipping the queue – let's get started!
 
+## [Download Now](https://mdshahnawazsheikh.github.io/trustdine-closed-beta/release/)
+
 ## Features
 
 - **User-Friendly Interface**: Intuitive design for effortless navigation and seamless ordering.
