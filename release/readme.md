@@ -1,4 +1,4 @@
-<img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="200px"/>
+<img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="150px"/>
 
 ## [Download Latest Version](https://github.com/MdShahnawazSheikh/trustdine-closed-beta/raw/main/release/latest-build.apk)
 #### Version 2.5.2 Available Now.
