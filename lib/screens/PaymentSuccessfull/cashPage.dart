@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trustdine/backend/qr_logic.dart';
 import 'package:trustdine/components/home_button.dart';
+import 'package:lottie/lottie.dart';
 import 'dart:async';
 
 import 'package:trustdine/main.dart';
@@ -48,6 +49,7 @@ class _CashPaymentState extends State<CashPayment> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -65,12 +67,17 @@ class _CashPaymentState extends State<CashPayment> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
+            Lottie.asset(
+              "assets/illustrations/circle_tick2.json",
+              repeat: false,
+              height: screenHeight / 4,
+            ),
+            /* const Icon(
               Icons.check_circle,
               size: 100,
               color: Colors.green,
-            ),
-            const SizedBox(height: 16),
+            ), */
+            // const SizedBox(height: 16),
             const Text(
               'Pay in Cash',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

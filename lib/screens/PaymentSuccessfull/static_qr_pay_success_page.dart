@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/backend/qr_logic.dart';
 import 'package:trustdine/components/home_button.dart';
@@ -50,6 +51,7 @@ class _StaticQRPaymentState extends State<StaticQRPayment> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -67,12 +69,17 @@ class _StaticQRPaymentState extends State<StaticQRPayment> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
+            /* const Icon(
               Icons.check_circle,
               size: 100,
               color: Colors.green,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 16), */
+            Lottie.asset(
+              "assets/illustrations/circle_tick2.json",
+              repeat: false,
+              height: screenHeight / 4,
+            ),
             const Text(
               'QR Payment Successfull',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:lottie/lottie.dart';
 import 'package:trustdine/backend/api_processes.dart';
 import 'package:trustdine/components/app_bar.dart';
 import 'package:trustdine/components/circular_image_card.dart';
@@ -64,11 +65,16 @@ class _HomeScreenState extends State<HomeScreen> {
               future: _dataFetchingFuture,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
+                  return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircularProgressIndicator(
+                        Lottie.asset(
+                          "assets/illustrations/plane_loading.json",
+                          repeat: false,
+                          height: screenHeight / 3,
+                        ),
+                        /* CircularProgressIndicator(
                           semanticsLabel: "Loading Content",
                           backgroundColor: Colors.grey,
                           color: Colors.black,
@@ -76,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(
                           height: 10,
-                        ),
+                        ), */
                         Text(
                           "Awesomeness loading❤️",
                           textAlign: TextAlign.center,
@@ -96,12 +102,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SvgPicture.asset(
+                              Lottie.asset(
+                                "assets/illustrations/astronaut_floating_black.json",
+                              ),
+
+                              /* SvgPicture.asset(
                                 "assets/illustrations/connection_lost.svg",
                                 height: screenHeight > screenWidth
                                     ? (screenHeight / 3)
                                     : screenWidth / 3,
-                              ),
+                              ), */
                               Text(
                                 "Lost Connection to server.\nCheck your connection or try again after sometimes.",
                                 textAlign: TextAlign.center,
