@@ -5,7 +5,7 @@
 
 ## What's New?
 - Added animated illustrations.
-- App size reduced by ~7mb.
+- App size reduced.
 - Minor changes and optimizations.
 
 ---
