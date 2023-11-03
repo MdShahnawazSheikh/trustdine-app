@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/apiData.dart';
@@ -135,6 +136,15 @@ class _CheckOutPageState extends State<CheckOutPage> {
   Widget build(BuildContext context) {
     // double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Image.asset(
+          "assets/trustdine_logo.png",
+          width: widget.logoWidth,
+        ),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -142,50 +152,21 @@ class _CheckOutPageState extends State<CheckOutPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'TrustSign',
-                  style: TextStyle(
-                    fontFamily: "Sedwig",
-                    fontSize: 70,
-                    color: Colors.blue,
-                  ),
+                Lottie.network(
+                  "https://lottie.host/9a864854-307d-4e40-a645-5ebd7b0159ed/caWKmUVLEm.json",
                 ),
-                /* SizedBox(
-                  height: 1,
-                ), */
-                /* Text(
-                  "Checkout",
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey.shade600),
-                  textAlign: TextAlign.center,
-                ), */
                 const SizedBox(
-                  height: 100,
+                  height: 80,
                 ),
                 Text(
                   "Thank You for your order\nChoose a payment method",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey.shade600),
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                      color: Colors.grey.shade600, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                /* GestureDetector(
-                  child: const CheckoutButton(
-                      yourText: "Pay with Razorpay",
-                      yourIcon: FontAwesomeIcons.indianRupeeSign,
-                      buttonColor: Color.fromARGB(255, 136, 0, 255),
-                      textColor: Color.fromARGB(255, 255, 255, 255)),
-                  onTap: () {
-                    print("tapped");
-                    makePayment();
-                  },
-                ), */
                 GestureDetector(
                   child: const CheckoutButton(
                       yourText: "Pay with QR",
@@ -215,30 +196,18 @@ class _CheckOutPageState extends State<CheckOutPage> {
                   child: const CheckoutButton(
                       yourText: "Pay with Cash",
                       yourIcon: FontAwesomeIcons.moneyCheckDollar,
-                      buttonColor: Colors.grey,
+                      buttonColor: Colors.green,
                       textColor: Color.fromARGB(255, 255, 255, 255)),
                   onTap: () {
                     _handleCashPayment(generateHexCode());
                   },
                 ),
-                // const SizedBox(
-                //   height: 5,
-                // ),
-                // GestureDetector(
-                //   child: const CheckoutButton(
-                //       yourText: "Pay with",
-                //       yourIcon: FontAwesomeIcons.applePay,
-                //       buttonColor: Color.fromARGB(255, 0, 0, 0),
-                //       textColor: Color.fromARGB(255, 255, 255, 255)),
-                //   onTap: () {
-                //     Fluttertoast.showToast(
-                //       msg: "Coming Soon",
-                //       timeInSecForIosWeb: 4,
-                //     );
-                //   },
-                // ),
                 const SizedBox(
-                  height: 5,
+                  height: 20,
+                ),
+                Text(
+                  "Powered by TrustSign",
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
             ),
@@ -280,7 +249,8 @@ class CheckoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      padding: EdgeInsets.symmetric(vertical: 15),
+      // height: 50,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(8),
@@ -293,8 +263,10 @@ class CheckoutButton extends StatelessWidget {
         children: [
           Text(
             yourText,
-            style: TextStyle(
-                color: textColor, fontSize: 16, fontWeight: FontWeight.w700),
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: Colors.white),
           ),
           const SizedBox(
             width: 6,

@@ -1,16 +1,19 @@
 <img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="150px"/>
 
-## Version 2.5.3 is Available Now.
+## Version 2.5.4 is Available Now.
 ### [Download Latest Version](https://github.com/MdShahnawazSheikh/trustdine-closed-beta/raw/main/release/latest-build.apk)
 
 ## What's New?
-- Added animated illustrations.
-- App size reduced.
-- Minor changes and optimizations.
+- Redesigned payment page.
+- Updated API.
 
 ---
 # TrustDine Closed Beta Changelog
 ## Version History:
+
+### Version 2.5.4 (November 4, 2023)
+- Redesigned payment page.
+- Updated API.
 
 ### Version 2.5.3 (October 31, 2023)
 - Added animated illustrations.

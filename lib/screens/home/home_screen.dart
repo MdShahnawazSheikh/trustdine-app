@@ -70,8 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Lottie.asset(
-                          "assets/illustrations/plane_loading.json",
-                          repeat: false,
+                          "assets/illustrations/objects_loading.json",
+                          // repeat: false,
                           height: screenHeight / 3,
                         ),
                         /* CircularProgressIndicator(

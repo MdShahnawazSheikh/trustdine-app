@@ -2,8 +2,7 @@ import 'dart:convert';
 // import 'dart:io';
 import 'package:http/http.dart' as http;
 
-String baseUrl =
-    "http://ec2-13-233-224-234.ap-south-1.compute.amazonaws.com:5001/api";
+String baseUrl = "https://trustdine.onrender.com/api";
 
 Future<Map<String, dynamic>> loginUser(String email, String password) async {
   final response = await http.post(
