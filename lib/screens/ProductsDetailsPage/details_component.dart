@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
 
 class DetailsCard extends StatelessWidget {
-  final String name, category, size, image, description;
+  final String name, category, size, image, description, type;
   final double price;
   const DetailsCard({
     Key? key,
@@ -15,6 +15,7 @@ class DetailsCard extends StatelessWidget {
     required this.size,
     required this.image,
     required this.description,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -86,7 +87,7 @@ class DetailsCard extends StatelessWidget {
                 OutlinedButton(
                   onPressed: () {
                     final productToAdd =
-                        AddedProduct(name, price, 1, image, size);
+                        AddedProduct(name, price, 1, image, size, type);
                     // Add the product to the cart using CartManager
                     CartManager().addProduct(productToAdd);
                     // String productName = widget.productName;

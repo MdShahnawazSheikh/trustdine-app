@@ -44,10 +44,12 @@ class NetworkProductInfoMediumCard extends StatelessWidget {
                 category: category,
                 price: price,
                 size: size,
-                description: description),
+                description: description,
+                type: type),
           )),
       onTap: () {
-        final productToAdd = AddedProduct(productName, price, 1, image, size);
+        final productToAdd =
+            AddedProduct(productName, price, 1, image, size, type);
         // Add the product to the cart using CartManager
         CartManager().addProduct(productToAdd);
         // String productName = widget.productName;

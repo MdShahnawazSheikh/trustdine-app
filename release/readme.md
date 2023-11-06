@@ -1,17 +1,19 @@
 <img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="150px"/>
 
-## Version 2.5.4 is Available Now.
+## Version 3.0.2 is Available Now.
 ### [Download Latest Version](https://github.com/MdShahnawazSheikh/trustdine-closed-beta/raw/main/release/latest-build.apk)
 
 ## What's New?
-- Redesigned payment page.
-- Updated API.
+- Added a feature that sends all orders to admin panel located on trustdine.com website.
 
 ---
 # TrustDine Closed Beta Changelog
 ## Version History:
 
-### Version 2.5.4 (November 4, 2023)
+### Version 3.0.2 (November 6, 2023)
+- Added a feature that sends all orders to admin panel located on trustdine.com website.
+
+### Version 3.0.1 (November 4, 2023)
 - Redesigned payment page.
 - Updated API.
 

@@ -6,7 +6,7 @@ import 'package:trustdine/screens/ProductsDetailsPage/details_component.dart';
 import 'package:trustdine/screens/ProductsDetailsPage/product_tile.dart';
 
 class ProductDetails extends StatefulWidget {
-  final String image, name, category, size, description;
+  final String image, name, category, size, description, type;
   final double price;
   const ProductDetails({
     super.key,
@@ -16,6 +16,7 @@ class ProductDetails extends StatefulWidget {
     required this.price,
     required this.size,
     required this.description,
+    required this.type,
   });
 
   @override
@@ -69,6 +70,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               category: widget.category,
               size: widget.size,
               description: widget.description,
+              type: widget.type,
             ),
           ),
           const SliverToBoxAdapter(
@@ -102,6 +104,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 price: FeaturedFoods[index]['price'],
                 screenWidth: screenWidth,
                 size: FeaturedFoods[index]['size'],
+                type: FeaturedFoods[index]['type'],
               ),
             ),
           ))

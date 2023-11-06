@@ -14,10 +14,11 @@ class ProductTileCard extends StatelessWidget {
     required this.screenWidth,
     required this.size,
     required this.builderObject,
+    required this.type,
   });
 
   final double imgSize, price, screenWidth;
-  final String image, title, size;
+  final String image, title, size, type;
   final List<Map<String, dynamic>> builderObject;
 
   @override
@@ -63,7 +64,8 @@ class ProductTileCard extends StatelessWidget {
           ),
           OutlinedButton(
             onPressed: () {
-              final productToAdd = AddedProduct(title, price, 1, image, size);
+              final productToAdd =
+                  AddedProduct(title, price, 1, image, size, type);
               // Add the product to the cart using CartManager
               CartManager().addProduct(productToAdd);
               // String productName = widget.productName;

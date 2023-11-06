@@ -23,7 +23,8 @@ class ProductInfoMediumCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(6),
       onTap: () {
-        final productToAdd = AddedProduct(productName, price, 1, image, size);
+        final productToAdd =
+            AddedProduct(productName, price, 1, image, size, "");
         // Add the product to the cart using CartManager
         CartManager().addProduct(productToAdd);
         // String productName = widget.productName;

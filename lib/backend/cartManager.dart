@@ -1,4 +1,6 @@
+import 'package:trustdine/backend/central_api.dart';
 import 'package:trustdine/backend/database_manager.dart';
+import 'package:trustdine/storage/cache.dart';
 
 class CartManager {
   // List to store added products
@@ -28,6 +30,7 @@ class CartManager {
   }
 
   Map<String, Map<String, dynamic>> cartData = {};
+  List<Map<String, String>> orderItems = [];
   void pushCartToFirestore(String orderId, String ModeOfPayment) async {
     // Create a map to store the cart data
 
@@ -40,10 +43,31 @@ class CartManager {
         'payment mode': ModeOfPayment,
         'fulfilled': 'no'
       };
+      Map<String, String> productMap = {
+        "foodImg": product.imagePath,
+        "foodName": product.productName,
+        "foodType":
+            product.type, // You might need to specify the food type here
+        "foodSize": product.size
+      };
+      orderItems.add(productMap);
     }
 
     // Call the DatabaseManager to add the cart data to Firestore
     await DatabaseManager().addData(orderId, cartData);
+
+    // Sending to api
+    String? token = await SecureStorageManager.getToken() as String;
+    // Send the order data using the sendOrder function
+    try {
+      Map<String, dynamic> response =
+          await sendOrder(token, orderId, orderItems);
+      print('Order sent successfully: $response');
+      // If you want to handle the response further, you can do it here
+    } catch (e) {
+      print('Failed to send order: $e');
+      // Handle the error here
+    }
   }
 
   void deductQuantity(int index) {
@@ -100,7 +124,8 @@ class AddedProduct {
   double price;
   final String size;
   int quantity;
+  String type;
 
-  AddedProduct(
-      this.productName, this.price, this.quantity, this.imagePath, this.size);
+  AddedProduct(this.productName, this.price, this.quantity, this.imagePath,
+      this.size, this.type);
 }

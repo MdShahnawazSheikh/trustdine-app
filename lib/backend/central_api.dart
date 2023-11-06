@@ -218,3 +218,27 @@ Future<Map<String, dynamic>> sendRevenue(
     throw Exception('Failed to send revenue: $response');
   }
 }
+
+Future<Map<String, dynamic>> sendOrder(String authToken, String orderId,
+    List<Map<String, String>> orderItems) async {
+  final response = await http.post(
+    Uri.parse('$baseUrl/order/add-order'),
+    headers: {
+      "Accept": "*/*",
+      "User-Agent": "Thunder Client",
+      "auth-token": authToken,
+      "Content-Type":
+          "application/json", // Specify the content type for the request
+    },
+    body: json.encode({
+      "orderId": orderId,
+      "orderItems": orderItems,
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    return json.decode(response.body);
+  } else {
+    throw Exception('Failed to send order: $response');
+  }
+}

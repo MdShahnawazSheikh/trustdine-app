@@ -27,8 +27,7 @@ class ProductCardTwoRow extends StatelessWidget {
     }
     return GestureDetector(
       onTap: () {
-        final productToAdd =
-            AddedProduct(name, price, 1, image, size);
+        final productToAdd = AddedProduct(name, price, 1, image, size, "");
         // Add the product to the cart using CartManager
         CartManager().addProduct(productToAdd);
         // String productName = widget.productName;

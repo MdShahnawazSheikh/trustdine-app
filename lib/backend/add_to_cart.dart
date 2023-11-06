@@ -5,13 +5,14 @@ class AddRemoveButton extends StatefulWidget {
   final String imagePath;
   final String productName;
   final double price;
-  final String productSize;
+  final String productSize, type;
   const AddRemoveButton(
       {required this.imagePath,
       required this.productName,
       required this.price,
       required this.productSize,
-      super.key});
+      super.key,
+      required this.type});
   @override
   _AddRemoveButtonState createState() => _AddRemoveButtonState();
 }
@@ -72,8 +73,13 @@ class _AddRemoveButtonState extends State<AddRemoveButton> {
                 )
               : ElevatedButton(
                   onPressed: () {
-                    final productToAdd = AddedProduct(widget.productName,
-                        widget.price, 1, widget.imagePath, widget.productSize);
+                    final productToAdd = AddedProduct(
+                        widget.productName,
+                        widget.price,
+                        1,
+                        widget.imagePath,
+                        widget.productSize,
+                        widget.type);
                     // Add the product to the cart using CartManager
                     CartManager().addProduct(productToAdd);
                     String productName = widget.productName;

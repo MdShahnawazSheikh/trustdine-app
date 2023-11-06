@@ -82,6 +82,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
         ));
 
     CartManager().pushCartToFirestore(orderID, "Cash");
+
     printReceipt(orderID);
     await Future.delayed(Duration(seconds: 3), () {
       CartManager().clearCart();
