@@ -1,14 +1,23 @@
 <img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="150px"/>
 
-## Version 3.0.2 is Available Now.
+## Version 3.0.4 is Available Now.
 ### [Download Latest Version](https://github.com/MdShahnawazSheikh/trustdine-closed-beta/raw/main/release/latest-build.apk)
 
 ## What's New?
-- Added a feature that sends all orders to admin panel located on trustdine.com website.
+- App now refreshes only upon launch and after every order.
+- User can also pull down to refresh on either home page or category page.
 
 ---
 # TrustDine Closed Beta Changelog
 ## Version History:
+
+### Version 3.0.4 (November 7, 2023)
+- App now refreshes only upon launch and after every order.
+- User can also pull down to refresh on either home page or category page.
+
+### Version 3.0.3 (November 7, 2023)
+- Now sends product quantity to admin panel's order KDS section.
+- Minor bug fixes and optimization.
 
 ### Version 3.0.2 (November 6, 2023)
 - Added a feature that sends all orders to admin panel located on trustdine.com website.

@@ -48,7 +48,8 @@ class CartManager {
         "foodName": product.productName,
         "foodType":
             product.type, // You might need to specify the food type here
-        "foodSize": product.size
+        "foodSize": product.size,
+        "foodQuantity": product.quantity.toString()
       };
       orderItems.add(productMap);
     }

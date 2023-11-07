@@ -32,14 +32,14 @@ class _CategoriesPageState extends State<CategoriesPage> {
       color: Colors.black87,
       height: screenHeight / 6,
       onRefresh: () async {
-        setState(() {
-          try {
-            fetchData();
-            Fluttertoast.showToast(msg: "Data refresh Successful.");
-          } catch (e) {
-            Fluttertoast.showToast(msg: "Failed to refresh: $e");
-          }
-        });
+        try {
+          // Call your data fetching logic here if needed
+          await fetchData();
+          setState(() {});
+          Fluttertoast.showToast(msg: "Data refresh Successful.");
+        } catch (e) {
+          Fluttertoast.showToast(msg: "Failed to refresh: $e");
+        }
       },
       showChildOpacityTransition: false,
       child: Scaffold(
