@@ -11,7 +11,7 @@
 # TrustDine Closed Beta Changelog
 ## Version History:
 
-### Version 3.0.4 (November 7, 2023)
+### Version 3.0.4 (November 8, 2023)
 - App now refreshes only upon launch and after every order.
 - User can also pull down to refresh on either home page or category page.
 
