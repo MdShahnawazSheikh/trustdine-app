@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lottie/lottie.dart';
 import 'package:trustdine/backend/central_api.dart'; // Assuming loginUser is implemented in this file
 import 'package:trustdine/components/CustomTextField.dart';
 import 'package:trustdine/components/LargeCustomButton.dart';
@@ -54,90 +55,76 @@ class _LoginScreenState extends State<LoginScreen> {
     if (screenWidth > screenHeight) {
       logoWidth = screenHeight / 3;
     }
+    Color textColor = Color.fromARGB(230, 230, 237, 243);
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/login_img.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: screenHeight / 3,
-                ),
-                Image.asset(
-                  'assets/trustdine_logo_white.png',
-                  width: logoWidth,
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  "Login to Your App",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 38.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 44.0,
-                ),
-                CustomTextField(
+      backgroundColor: Color(0xFF0d154d),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Lottie.asset(
+              "assets/illustrations/hills_night.json",
+              frameRate: FrameRate(30),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 26.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Login",
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                        color: textColor, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Please sign in to continue",
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                          color: textColor,
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 44.0,
+                  ),
+                  CustomTextField(
                     controller: _emailController,
                     hintText: "Email Address",
                     prefixIcon: Icons.mail,
-                    obscureText: false),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                CustomTextField(
+                    obscureText: false,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  CustomTextField(
                     controller: _passwordController,
                     hintText: "Password",
                     prefixIcon: Icons.security,
-                    obscureText: true),
-                /* TextButton(
-                  onPressed: () {
-                    /* Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ResetPasswordScreen(),
-                      ),
-                    ); */
-                  },
-                  child: const Text(
-                    "Don't remember your password?",
-                    style: TextStyle(color: Colors.red),
+                    obscureText: true,
                   ),
-                ), */
-                const SizedBox(
-                  height: 32.0,
-                ),
-                _isLoggingIn
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          semanticsLabel: "Logging You In",
-                          backgroundColor: Colors.grey,
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          semanticsValue: AutofillHints.countryName,
+                  const SizedBox(
+                    height: 32.0,
+                  ),
+                  _isLoggingIn
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            semanticsLabel: "Logging You In",
+                            backgroundColor: Colors.grey,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            semanticsValue: AutofillHints.countryName,
+                          ),
+                        )
+                      : Center(
+                          child: LargeCustomButton(
+                            yourText: "Login",
+                            onPressedFunction: _handleLogin,
+                            buttonColor: Color.fromARGB(230, 233, 245, 255),
+                            textColor: Color(0xFF0d154d),
+                          ),
                         ),
-                      )
-                    : Center(
-                        child: LargeCustomButton(
-                          yourText: "Login",
-                          onPressedFunction: _handleLogin,
-                          buttonColor: Color.fromARGB(255, 252, 128, 25),
-                          textColor: Colors.white,
-                        ),
-                      ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -97,6 +97,7 @@ class CartManager {
   void clearCart() {
     _addedProducts.clear();
     cartData.clear();
+    orderItems.clear();
   }
 
   double calculateTotalPrice() {

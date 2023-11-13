@@ -1,6 +1,6 @@
 <img src="../assets/trustdine_logo.png" alt="TrustDine Logo" width="150px"/>
 
-## Version 3.0.4 is Available Now.
+## Version 3.0.5 is Available Now.
 ### [Download Latest Version](https://github.com/MdShahnawazSheikh/trustdine-closed-beta/raw/main/release/latest-build.apk)
 
 ## What's New?
@@ -10,6 +10,12 @@
 ---
 # TrustDine Closed Beta Changelog
 ## Version History:
+
+### Version 3.0.6 (November 11, 2023)
+- New login page UI.
+
+### Version 3.0.5 (November 8, 2023)
+- Adressed an issue where previous orders were conflicting with new orders.
 
 ### Version 3.0.4 (November 8, 2023)
 - App now refreshes only upon launch and after every order.

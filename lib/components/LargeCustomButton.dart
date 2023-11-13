@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LargeCustomButton extends StatelessWidget {
@@ -16,17 +17,36 @@ class LargeCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double buttonWidth = screenWidth / 2;
     return Container(
-      width: double.infinity,
+      width: buttonWidth,
       child: RawMaterialButton(
         fillColor: buttonColor,
-        elevation: 0.0,
-        padding: const EdgeInsets.symmetric(vertical: 18.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 10.0,
+        padding: const EdgeInsets.symmetric(vertical: 13.0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         onPressed: onPressedFunction,
-        child: Text(
-          yourText,
-          style: TextStyle(color: textColor, fontSize: 18.0),
+        child: Container(
+          width: buttonWidth / 2.2,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 2.0),
+                child: Text(
+                  yourText,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              const Icon(
+                CupertinoIcons.arrow_right,
+              ),
+            ],
+          ),
         ),
       ),
     );

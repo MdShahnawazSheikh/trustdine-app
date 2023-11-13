@@ -180,11 +180,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SliverPadding(
-              padding: EdgeInsets.all(defaultPadding),
+              padding: EdgeInsets.only(
+                left: defaultPadding,
+                right: defaultPadding,
+                top: 50,
+                bottom: 40,
+              ),
               sliver: SliverToBoxAdapter(
                 child: Text(
                   "Made with ❤️\nBy the TrustSign team.",
                   textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: 'Autour'),
                 ),
               ),
             ),
