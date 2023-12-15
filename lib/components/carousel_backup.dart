@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:trustdine/constants.dart';
 import 'package:trustdine/apiData.dart';
 
@@ -43,12 +42,8 @@ class _ImageCarouselState extends State<ImageCarousel> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: Container(
-                              color: Colors.white,
-                            ),
+                          return Container(
+                            color: Colors.white,
                           );
                         } else if (snapshot.hasError) {
                           return Center(child: Text('Error loading image'));

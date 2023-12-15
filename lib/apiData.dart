@@ -1,5 +1,6 @@
 // It contains all data that we used
 List<dynamic> allProducts = [];
+List<String> productNames = [];
 List<Map<String, dynamic>> PizzaData = [];
 List<Map<String, dynamic>> PizzaVeg = [];
 List<Map<String, dynamic>> PizzaNonVeg = [];

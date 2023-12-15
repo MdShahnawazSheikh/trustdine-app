@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -9,7 +8,7 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ColorizeAnimatedTextKit(
+            /*  ColorizeAnimatedTextKit(
               text: const ['trustdine'],
               textStyle: const TextStyle(
                 fontSize: 50,
@@ -23,7 +22,7 @@ class SplashScreen extends StatelessWidget {
                 Colors.black38,
               ],
               textAlign: TextAlign.start,
-            ),
+            ), */
             const SizedBox(height: 20.0),
             const CircularProgressIndicator(), // You can add any additional loading indicator if needed
           ],

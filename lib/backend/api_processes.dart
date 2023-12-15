@@ -75,8 +75,15 @@ Future<void> fetchData() async {
   } catch (e) {
     throw Exception('Failed to load data');
   }
-  allProducts = response;
 
+  // All products
+  try {
+    productNames.clear();
+  } catch (e) {}
+  allProducts = response;
+  for (var product in allProducts) {
+    productNames.add(product['foodName']);
+  }
   // Fetching Carousels and Foods
   try {
     for (var item in carousels) {

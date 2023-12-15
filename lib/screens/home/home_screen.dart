@@ -51,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           await fetchData();
           setState(() {});
           Fluttertoast.showToast(msg: "Data refresh Successful.");
+          print(productNames);
         } catch (e) {
           Fluttertoast.showToast(msg: "Failed to refresh: $e");
         }
@@ -81,8 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Row(
                   children: [
-                    Icon(CupertinoIcons.search),
-                    SizedBox(
+                    const Icon(CupertinoIcons.search),
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
@@ -90,13 +91,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: Theme.of(context)
                           .textTheme
                           .headline6!
-                          .copyWith(color: Color(0xFF22A45D)),
+                          .copyWith(color: const Color(0xFF22A45D)),
                     ),
                   ],
                 ),
                 onPressed: () => showSearch(
                   context: context,
-                  delegate: CustomSeatchDelegate(),
+                  delegate: CustomSeatchDelegate(screenWidth: screenWidth),
                 ),
               )),
             ),
