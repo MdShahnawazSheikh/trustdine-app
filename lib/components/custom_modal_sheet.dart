@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trustdine/components/NetworkProductCardTwoRow.dart';
-import 'package:trustdine/components/ProductCardTwoRow.dart';
 
 Future<dynamic> CustomModalSheet(
   BuildContext context,
@@ -42,31 +41,39 @@ Future<dynamic> CustomModalSheet(
                 const SizedBox(
                   height: 15,
                 ),
-                GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: yourData.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    mainAxisExtent: sheetHeight > screenWidth
-                        ? (sheetHeight / 2.5)
-                        : sheetHeight / 1.5,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 35.0,
+                    left: 35.0,
+                    bottom: 35.0,
+                    top: 15,
                   ),
-                  itemBuilder: (BuildContext context, int index) {
-                    return NetworkProductCardTwoRow(
-                      onPress: () {},
-                      image: yourData[index]['image'],
-                      name: yourData[index]['name'],
-                      category: yourData[index]['category'],
-                      size: yourData[index]['size'],
-                      price: yourData[index]['price'],
-                      rating: yourData[index]['rating'],
-                      type: yourData[index]['type'],
-                      description: yourData[index]['description'],
-                    );
-                  },
+                  child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: yourData.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      mainAxisExtent: sheetHeight > screenWidth
+                          ? (sheetHeight / 2.5)
+                          : sheetHeight / 1.5,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return NetworkProductCardTwoRow(
+                        onPress: () {},
+                        image: yourData[index]['image'],
+                        name: yourData[index]['name'],
+                        category: yourData[index]['category'],
+                        size: yourData[index]['size'],
+                        price: yourData[index]['price'],
+                        rating: yourData[index]['rating'],
+                        type: yourData[index]['type'],
+                        description: yourData[index]['description'],
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

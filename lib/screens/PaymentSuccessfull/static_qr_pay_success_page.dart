@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:trustdine/backend/cartManager.dart';
+import 'package:trustdine/apiData.dart';
 import 'package:trustdine/backend/qr_logic.dart';
 import 'package:trustdine/components/home_button.dart';
 import 'dart:async';
-
 import 'package:trustdine/main.dart';
-import 'package:trustdine/printer/printer_utils.dart';
 
 class StaticQRPayment extends StatefulWidget {
   final String orderId;
@@ -40,6 +38,7 @@ class _StaticQRPaymentState extends State<StaticQRPayment> {
         } else {
           // Redirect to MyApp() when the timer reaches 0
           _timer.cancel();
+          isOrdering = false;
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => MyApp()),

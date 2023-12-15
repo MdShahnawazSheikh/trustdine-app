@@ -1,22 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:lottie/lottie.dart';
-import 'package:trustdine/backend/central_api.dart';
+import 'package:trustdine/apiData.dart';
 import 'package:trustdine/backend/api_processes.dart';
 import 'package:trustdine/screens/Cart/CartPage.dart';
 import 'package:trustdine/screens/Categories/categories_screen.dart';
+import 'package:trustdine/screens/SlideShow/slideshow_screen.dart';
 import 'package:trustdine/screens/auth/login_screen.dart';
 import 'package:trustdine/screens/home/home_screen.dart';
+import 'package:trustdine/screens/search/searchPage.dart';
 import 'package:trustdine/storage/cache.dart';
+import 'package:trustdine/test_page.dart';
 import 'package:trustdine/theme.dart';
 import 'firebase_options.dart';
-import 'package:device_preview/device_preview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,10 +24,16 @@ void main() async {
   );
 
   String? token = await SecureStorageManager.getToken();
-
+  /* if (token != null) {
+    InvoiceData = await fetchInvoices(token!);
+  } */
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: token != null ? MyApp() : LoginScreen(),
+    home: token != null ? const MyApp() : const LoginScreen(),
+    /* home: DevicePreview(
+      enabled: true,
+      builder: (context) => token != null ? const MyApp() : const LoginScreen(),
+    ), */
   ));
 }
 
@@ -46,8 +51,7 @@ void main() async {
       builder: (context) => MyAppWrapper(token),
     ),
   );
-}
- */
+} */
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -87,16 +91,17 @@ class HomeScreenNavigation extends StatefulWidget {
   State<HomeScreenNavigation> createState() => _HomeScreenNavigationState();
 }
 
+int selectedIndex = 0;
+
 class _HomeScreenNavigationState extends State<HomeScreenNavigation> {
   late Future<void> _dataFetchingFuture;
   late PageController _pageController;
-  int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
     _dataFetchingFuture = fetchData();
-    _pageController = PageController(initialPage: _selectedIndex);
+    _pageController = PageController(initialPage: selectedIndex);
   }
 
   void _onItemTapped(int index) {
@@ -111,25 +116,29 @@ class _HomeScreenNavigationState extends State<HomeScreenNavigation> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    double logoWidth = screenWidth / 3;
+    double logoWidth = screenWidth / 4;
     if (screenWidth > screenHeight) {
-      logoWidth = screenHeight / 3;
+      logoWidth = screenHeight / 4;
     }
     return Scaffold(
-      bottomNavigationBar: FloatingNavbar(
-        borderRadius: 8,
-        backgroundColor: Colors.black87,
-        selectedItemColor: Colors.black87,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: [
-          FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-          // FloatingNavbarItem(icon: Icons.local_pizza, title: 'Pizza'),
-          // FloatingNavbarItem(icon: FontAwesomeIcons.burger, title: 'Burger'),
-          FloatingNavbarItem(
-              icon: FontAwesomeIcons.boxesStacked, title: 'Products'),
-          FloatingNavbarItem(icon: Icons.shopping_cart, title: 'Cart'),
-        ],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 40.0, right: 20, left: 20),
+        child: FloatingNavbar(
+          borderRadius: 8,
+          backgroundColor: Colors.black87,
+          selectedItemColor: Colors.black87,
+          currentIndex: selectedIndex,
+          onTap: _onItemTapped,
+          items: [
+            FloatingNavbarItem(icon: Icons.flash_on, title: 'Quick Add'),
+            FloatingNavbarItem(icon: Icons.home, title: 'Home'),
+            // FloatingNavbarItem(icon: Icons.local_pizza, title: 'Pizza'),
+            // FloatingNavbarItem(icon: FontAwesomeIcons.burger, title: 'Burger'),
+            FloatingNavbarItem(
+                icon: FontAwesomeIcons.boxesStacked, title: 'Categories'),
+            FloatingNavbarItem(icon: Icons.shopping_cart, title: 'Cart'),
+          ],
+        ),
       ),
       body: FutureBuilder(
         future: _dataFetchingFuture,
@@ -144,16 +153,7 @@ class _HomeScreenNavigationState extends State<HomeScreenNavigation> {
                     // repeat: false,
                     height: screenHeight / 3,
                   ),
-                  /* CircularProgressIndicator(
-                          semanticsLabel: "Loading Content",
-                          backgroundColor: Colors.grey,
-                          color: Colors.black,
-                          semanticsValue: AutofillHints.countryName,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ), */
-                  Text(
+                  const Text(
                     "Awesomeness loading❤️",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontFamily: "Autour"),
@@ -170,44 +170,36 @@ class _HomeScreenNavigationState extends State<HomeScreenNavigation> {
                 padding: EdgeInsets.all(screenWidth / 10.0),
                 child: SingleChildScrollView(
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Lottie.asset(
-                          "assets/illustrations/astronaut_floating_black.json",
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Lottie.asset(
+                        "assets/illustrations/astronaut_floating_black.json",
+                      ),
+                      Text(
+                        "You are not connected!\nCheck your connection or try again after sometimes.",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          await SecureStorageManager.deleteToken();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()),
+                          );
+                        },
+                        child: Text(
+                          "Try logging in again",
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.blueAccent,
+                                  ),
                         ),
-
-                        /* SvgPicture.asset(
-                                "assets/illustrations/connection_lost.svg",
-                                height: screenHeight > screenWidth
-                                    ? (screenHeight / 3)
-                                    : screenWidth / 3,
-                              ), */
-                        Text(
-                          "You are not connected!\nCheck your connection or try again after sometimes.",
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            await SecureStorageManager.deleteToken();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginScreen()),
-                            );
-                          },
-                          child: Text(
-                            "Try logging in again",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.blueAccent,
-                                ),
-                          ),
-                        ),
-                      ]),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -215,26 +207,39 @@ class _HomeScreenNavigationState extends State<HomeScreenNavigation> {
             return AnimatedBuilder(
               animation: _pageController,
               builder: (context, child) {
-                return PageView(
-                  controller: _pageController,
-                  children: [
-                    HomeScreen(
-                      logoWidth: logoWidth,
-                    ),
-
-                    CategoriesPage(
-                      logoWidth: logoWidth,
-                    ),
-                    CartPage(
-                      logoWidth: logoWidth,
-                    ),
-                    // Add other screens here
-                  ],
-                  onPageChanged: (index) {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
+                if (isOrdering == false) {
+                  WidgetsBinding.instance?.addPostFrameCallback((_) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SlideShowScreen(),
+                      ),
+                    );
+                  });
+                }
+                return Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: PageView(
+                    controller: _pageController,
+                    children: [
+                      const QuickAdd(),
+                      HomeScreen(
+                        logoWidth: logoWidth,
+                      ),
+                      CategoriesPage(
+                        logoWidth: logoWidth,
+                      ),
+                      CartPage(
+                        logoWidth: logoWidth,
+                      ),
+                      // Add other screens here
+                    ],
+                    onPageChanged: (index) {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                  ),
                 );
               },
             );

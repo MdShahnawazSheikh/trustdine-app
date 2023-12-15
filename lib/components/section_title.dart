@@ -22,7 +22,13 @@ class SectionTitle extends StatelessWidget {
       TextButton(
           onPressed: press,
           style: TextButton.styleFrom(foregroundColor: kActiveColor),
-          child: Text(buttonText))
+          child: Text(
+            buttonText,
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: kActiveColor),
+          ))
     ]);
   }
 }

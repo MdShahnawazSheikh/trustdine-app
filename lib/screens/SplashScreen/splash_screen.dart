@@ -10,13 +10,13 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ColorizeAnimatedTextKit(
-              text: ['trustdine'],
+              text: const ['trustdine'],
               textStyle: const TextStyle(
                 fontSize: 50,
                 fontFamily: 'impact',
                 // fontWeight: FontWeight.bold,
               ),
-              colors: [
+              colors: const [
                 Colors.black87,
                 Colors.black54,
                 Colors.black45,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trustdine/apiData.dart';
 import 'package:trustdine/backend/qr_logic.dart';
 import 'package:trustdine/components/home_button.dart';
 import 'package:lottie/lottie.dart';
@@ -37,6 +38,7 @@ class _CashPaymentState extends State<CashPayment> {
           _secondsRemaining--;
         } else {
           _timer.cancel();
+          isOrdering = false;
           // Redirect to MyApp() when the timer reaches 0
           Navigator.pushReplacement(
             context,

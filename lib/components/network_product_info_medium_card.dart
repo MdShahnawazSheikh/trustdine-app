@@ -39,13 +39,14 @@ class NetworkProductInfoMediumCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ProductDetails(
-                image: image,
-                name: productName,
-                category: category,
-                price: price,
-                size: size,
-                description: description,
-                type: type),
+              image: image,
+              name: productName,
+              category: category,
+              price: price,
+              size: size,
+              description: description,
+              type: type,
+            ),
           )),
       onTap: () {
         final productToAdd =

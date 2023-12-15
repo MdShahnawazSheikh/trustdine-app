@@ -4,7 +4,6 @@ import 'package:blue_thermal_printer/blue_thermal_printer.dart';
 import 'package:trustdine/apiData.dart';
 import 'package:trustdine/backend/api_processes.dart';
 import 'package:trustdine/backend/cartManager.dart';
-import 'package:trustdine/backend/central_api.dart';
 import 'package:trustdine/storage/cache.dart';
 
 class PrinterUtils {
@@ -52,9 +51,15 @@ class PrinterUtils {
 
   Future<void> printRestaurantReceipt(String restaurantName, String orderID,
       List<AddedProduct> cartItems, double totalAmount) async {
-    sendRevenueData(totalAmount);
     String? token = await SecureStorageManager.getToken() as String;
-    InvoiceData = await fetchInvoices(token);
+
+    double discountPercentage =
+        double.parse(InvoiceData[0]['discount'].toString());
+    double discountAmount = (discountPercentage / 100) * totalAmount;
+    double amountAfterDiscount = totalAmount - discountAmount;
+    double gstPercentage = double.parse(InvoiceData[0]['gst'].toString());
+    double gstAmount = (gstPercentage / 100) * amountAfterDiscount;
+    sendRevenueData(amountAfterDiscount + gstAmount);
     if (await isConnected) {
       try {
         _printer.printNewLine();
@@ -85,19 +90,31 @@ class PrinterUtils {
         _printer.printNewLine();
         for (AddedProduct item in CartManager().addedProducts) {
           _printer.printCustom(
-            "${(item.productName.substring(0, ((item.productName.length < 8 ? 4 : 8)))) + '...'}  x ${item.quantity} --- Rs ${item.price}",
+            "${item.productName}  x ${item.quantity} (${item.size}) --- Rs ${item.price}",
             1,
             1,
           );
         }
+        _printer.printCustom("----------------------------", 1, 1);
+        _printer.printCustom(
+            "Discount @$discountPercentage% ----- -Rs $discountAmount", 1, 1);
+        _printer.printCustom(
+            "GST @$gstPercentage% ----- +Rs ${gstAmount.toStringAsFixed(2)}",
+            1,
+            1);
+        _printer.printCustom("----------------------------", 1, 1);
+        _printer.printNewLine();
+        _printer.printNewLine();
 
+        _printer.printCustom("----------------------------", 1, 1);
+        _printer.printCustom(
+            "Total: Rs ${(amountAfterDiscount + gstAmount).toStringAsFixed(2)}",
+            2,
+            1);
+        _printer.printCustom("(Price Inclusive of GST $gstPercentage%)", 1, 1);
         _printer.printCustom("----------------------------", 1, 1);
         /*  _printer.printLeftRight(
             "   Total", "${totalAmount.toStringAsFixed(2)} INR  ", 1); */
-        _printer.printNewLine();
-        _printer.printNewLine();
-        _printer.printCustom(
-            "Total: Rs ${totalAmount.toStringAsFixed(2)}", 2, 1);
         _printer.printNewLine();
         _printer.printNewLine();
         _printer.printCustom("**************************", 1, 1);
@@ -106,6 +123,7 @@ class PrinterUtils {
         _printer.printCustom("**************************", 1, 1);
         _printer.printNewLine();
         _printer.printNewLine();
+        _printer.paperCut();
       } catch (e) {
         print(e);
       }

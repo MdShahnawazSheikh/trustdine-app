@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
@@ -7,6 +8,7 @@ import 'package:trustdine/components/circular_image_card.dart';
 import 'package:trustdine/components/custom_modal_sheet.dart';
 import 'package:trustdine/components/image_carousel.dart';
 import 'package:trustdine/components/network_product_info_medium_card.dart';
+import 'package:trustdine/components/searchDelegate.dart';
 import 'package:trustdine/components/section_title.dart';
 import 'package:trustdine/constants.dart';
 import 'package:trustdine/apiData.dart';
@@ -27,11 +29,19 @@ class _HomeScreenState extends State<HomeScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     double cardHeight = screenHeight / 3;
-    double logoWidth = screenWidth / 3;
+    double logoWidth = screenWidth / 4;
     if (screenWidth > screenHeight) {
-      logoWidth = screenHeight / 3;
+      logoWidth = screenHeight / 4;
       cardHeight = screenWidth / 2.5;
     }
+    String searchQuery = '';
+
+    void onSearch(String query) {
+      setState(() {
+        searchQuery = query;
+      });
+    }
+
     return LiquidPullToRefresh(
       color: Colors.black87,
       height: screenHeight / 6,
@@ -51,7 +61,44 @@ class _HomeScreenState extends State<HomeScreen> {
           slivers: [
             CustomSliverAppBar(logoWidth: logoWidth),
             SliverToBoxAdapter(
-              child: SizedBox(height: screenHeight / 22),
+              child: SizedBox(height: screenHeight / 30),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.only(
+                right: defaultPadding,
+                left: defaultPadding,
+                bottom: 15,
+              ),
+              sliver: SliverToBoxAdapter(
+                  child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  primary: const Color(0xFF22A45D),
+                  // fixedSize: const Size(120, 40),
+                  side: const BorderSide(color: Color(0xFF22A45D)),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(CupertinoIcons.search),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Search",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: Color(0xFF22A45D)),
+                    ),
+                  ],
+                ),
+                onPressed: () => showSearch(
+                  context: context,
+                  delegate: CustomSeatchDelegate(),
+                ),
+              )),
             ),
             const SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -60,19 +107,25 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.all(defaultPadding),
+              padding: const EdgeInsets.only(
+                right: defaultPadding,
+                left: defaultPadding,
+                top: defaultPadding * 2,
+                bottom: defaultPadding * 2,
+              ),
               sliver: SliverToBoxAdapter(
                 child: SectionTitle(
-                    buttonText: "See All",
-                    title: "Featured Products",
-                    press: () => CustomModalSheet(
-                          context,
-                          screenHeight,
-                          screenWidth,
-                          cardHeight,
-                          "Featured Products",
-                          FeaturedFoods,
-                        )),
+                  buttonText: "See All",
+                  title: "Featured Products",
+                  press: () => CustomModalSheet(
+                    context,
+                    screenHeight,
+                    screenWidth,
+                    cardHeight,
+                    "Featured Products",
+                    FeaturedFoods,
+                  ),
+                ),
               ),
             ),
             SliverToBoxAdapter(
@@ -101,8 +154,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SliverPadding(
-              padding:
-                  EdgeInsets.only(left: defaultPadding, bottom: 15, top: 30),
+              padding: EdgeInsets.only(
+                right: defaultPadding,
+                left: defaultPadding,
+                top: defaultPadding * 3,
+                bottom: defaultPadding * 2,
+              ),
               sliver: SliverToBoxAdapter(
                 child: SectionTitleNoButton(
                   title: "Categories",
@@ -145,7 +202,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.all(defaultPadding),
+              padding: const EdgeInsets.only(
+                right: defaultPadding,
+                left: defaultPadding,
+                top: defaultPadding * 3,
+                bottom: defaultPadding * 2,
+              ),
               sliver: SliverToBoxAdapter(
                 child: SectionTitle(
                     buttonText: "See All",

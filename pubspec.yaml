@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 3.0.6+6
+version: 3.5.0+8
 
 environment:
   sdk: '>=3.1.2 <4.0.0'
@@ -55,6 +55,10 @@ dependencies:
   liquid_pull_to_refresh: ^3.0.1
   animated_text_kit: ^4.2.2
   lottie: ^2.7.0
+  cool_alert: ^2.0.1
+  responsive_grid_list: ^1.4.0
+  getwidget: ^4.0.0
+  infinite_carousel: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -119,9 +123,26 @@ flutter:
     - family: Autour
       fonts:
         - asset: assets/font/AutourOne-Regular.ttf
+    - family: CedarvilleCursive
+      fonts:
+        - asset: assets/font/CedarvilleCursive-Regular.ttf
     - family: Impact
       fonts:
         - asset: assets/font/impact.ttf
+    - family: Montserrat_Bold
+      fonts:
+        - asset: assets/font/Montserrat-Bold.ttf
+    - family: Montserrat_Regular
+      fonts:
+        - asset: assets/font/Montserrat-Regular.ttf
+    - family: Montserrat_Medium
+      fonts:
+        - asset: assets/font/Montserrat-Medium.ttf
+
+
+
+      
+          
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

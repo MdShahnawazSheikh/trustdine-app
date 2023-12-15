@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/backend/checkout.dart';
 import 'package:trustdine/components/app_bar.dart';
-import 'package:trustdine/components/cart_card.dart';
 import 'package:trustdine/components/cart_card_network.dart';
 import 'package:trustdine/components/section_title.dart';
 import 'package:trustdine/constants.dart';
@@ -131,6 +130,58 @@ class _CartPageState extends State<CartPage> {
                   ),
                 )
         ],
+      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(screenHeight / 40),
+          topRight: Radius.circular(screenHeight / 40),
+        ),
+        child: Container(
+          color: Colors.white,
+          padding: EdgeInsets.only(
+            right: screenWidth / 30,
+            left: screenWidth / 30,
+            top: 10,
+          ),
+          child: OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              primary: const Color(0xFF22A45D),
+              // fixedSize: const Size(120, 40),
+              side: const BorderSide(color: Color(0xFF22A45D)),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+            ),
+            child: const Text(
+              "CHECKOUT",
+              // style: const TextStyle(fontSize: 12),
+            ),
+            onPressed: () {
+              if (CartManager().addedProducts.isNotEmpty) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyApp(),
+                    ));
+                double finalPrice = double.parse(
+                    CartManager().calculateTotalPrice().toStringAsFixed(2));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CheckOutPage(
+                        paymentAmount: finalPrice,
+                        logoWidth: widget.logoWidth,
+                      ),
+                    ));
+              } else {
+                Fluttertoast.showToast(
+                  msg: "Please add items to cart to proceed!",
+                  timeInSecForIosWeb: 4,
+                );
+              }
+            },
+          ),
+        ),
       ),
     );
   }

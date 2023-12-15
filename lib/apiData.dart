@@ -1,5 +1,5 @@
 // It contains all data that we used
-
+List<dynamic> allProducts = [];
 List<Map<String, dynamic>> PizzaData = [];
 List<Map<String, dynamic>> PizzaVeg = [];
 List<Map<String, dynamic>> PizzaNonVeg = [];
@@ -14,6 +14,7 @@ List<dynamic> InvoiceData = [];
 Map<String, dynamic> userDetails = {};
 
 Map<String, List<Map<String, dynamic>>> productsByCategory = {};
+List<Map<String, dynamic>> selectedCategory = [];
 List<String> demoBigImages = [
   "assets/images/big_1.png",
   "assets/images/big_2.png",
@@ -179,3 +180,5 @@ List<Map<String, dynamic>> demoPizzaData = [
     "category": 'Veg Pizza',
   },
 ];
+
+bool isOrdering = false;

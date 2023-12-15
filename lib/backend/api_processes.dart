@@ -1,5 +1,3 @@
-import 'dart:convert'; // Import the dart:convert library
-import 'package:http/http.dart' as http;
 import 'package:trustdine/backend/central_api.dart';
 import 'package:trustdine/apiData.dart';
 import 'package:trustdine/storage/cache.dart';
@@ -22,20 +20,24 @@ void sendRevenueData(double amount) async {
 
 Future<void> fetchData() async {
   String? token = await SecureStorageManager.getToken() as String;
+  InvoiceData = await fetchInvoices(token!);
+  try {
+    allProducts.clear();
+  } catch (e) {}
   productsByCategory.clear();
   if (categoriesList.isNotEmpty) {
     categoriesList.clear();
   }
-  if (PizzaData.isNotEmpty) {
+  /* if (PizzaData.isNotEmpty) {
     PizzaData.clear();
     PizzaVeg.clear();
     PizzaNonVeg.clear();
-  }
-  if (BurgerData.isNotEmpty) {
+  } */
+  /*  if (BurgerData.isNotEmpty) {
     BurgerData.clear();
     BurgerVeg.clear();
     BurgerNonVeg.clear();
-  }
+  } */
   if (CarouselData.isNotEmpty) {
     CarouselData.clear();
   }
@@ -45,6 +47,7 @@ Future<void> fetchData() async {
   if (SpotlightFoods.isNotEmpty) {
     SpotlightFoods.clear();
   }
+
   final response = await fetchAllFoods(
       token); // Replace 'API_ENDPOINT' with the actual API endpoint
   final carousels = await fetchAllCarousel(token);
@@ -72,6 +75,7 @@ Future<void> fetchData() async {
   } catch (e) {
     throw Exception('Failed to load data');
   }
+  allProducts = response;
 
   // Fetching Carousels and Foods
   try {

@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:trustdine/apiData.dart';
 import 'package:trustdine/backend/cartManager.dart';
-import 'package:trustdine/backend/checkout.dart';
 import 'package:trustdine/backend/qr_logic.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:trustdine/screens/PaymentSuccessfull/static_qr_pay_success_page.dart';
 import 'package:trustdine/main.dart';
 import 'package:trustdine/printer/printer_utils.dart';
-import 'package:trustdine/screens/Cart/CartPage.dart';
 
 class UpiPaymentScreenStatic extends StatefulWidget {
   final String receiverUpiId, orderId;
@@ -101,7 +98,7 @@ class _UpiPaymentScreenStaticState extends State<UpiPaymentScreenStatic> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
                 Text(
@@ -162,6 +159,7 @@ class _UpiPaymentScreenStaticState extends State<UpiPaymentScreenStatic> {
                 OutlinedButton.icon(
                   onPressed: () {
                     CartManager().clearCart();
+                    isOrdering = false;
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

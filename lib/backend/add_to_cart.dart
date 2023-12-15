@@ -82,8 +82,6 @@ class _AddRemoveButtonState extends State<AddRemoveButton> {
                         widget.type);
                     // Add the product to the cart using CartManager
                     CartManager().addProduct(productToAdd);
-                    String productName = widget.productName;
-                    String imagePath = widget.imagePath;
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,

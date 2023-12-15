@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:trustdine/backend/cartManager.dart';
+import 'package:trustdine/apiData.dart';
 import 'package:trustdine/main.dart';
 
 class GoHomeButton extends StatelessWidget {
@@ -12,6 +12,7 @@ class GoHomeButton extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: OutlinedButton.icon(
         onPressed: () {
+          isOrdering = false;
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(

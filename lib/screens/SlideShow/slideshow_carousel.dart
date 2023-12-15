@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:trustdine/constants.dart';
 import 'package:trustdine/apiData.dart';
 
-class ImageCarousel extends StatefulWidget {
-  const ImageCarousel({Key? key}) : super(key: key);
+class SlideShowImageCarousel extends StatefulWidget {
+  const SlideShowImageCarousel({Key? key}) : super(key: key);
 
   @override
-  _ImageCarouselState createState() => _ImageCarouselState();
+  _SlideShowImageCarouselState createState() => _SlideShowImageCarouselState();
 }
 
-class _ImageCarouselState extends State<ImageCarousel> {
+class _SlideShowImageCarouselState extends State<SlideShowImageCarousel> {
   int _currentPage = 0;
   late PageController _pageController;
   late Timer _timer;
@@ -67,7 +67,10 @@ class _ImageCarouselState extends State<ImageCarousel> {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: CircularProgressIndicator(
+                              color: Colors.black,
+                              backgroundColor: Colors.grey,
+                            ),
                           );
                         } else if (snapshot.hasError) {
                           return const Center(
@@ -79,7 +82,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
                             child: CachedNetworkImage(
                               fadeInDuration: const Duration(microseconds: 0),
                               imageUrl: CarouselData[index],
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             ),
                           );
                         } else {

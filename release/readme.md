@@ -11,6 +11,16 @@
 # TrustDine Closed Beta Changelog
 ## Version History:
 
+### Version 3.5.0 (December 8, 2023)
+- Added SignUp Info.
+- Added a new tab called Quick Add.
+- GST and Discount invoice details are now functional. 
+- Added a new sidebar feature.
+- Implemented a large checkout button in main release.
+- Implemented a floating go back button in individual categories page.
+- Optimised padding on some screens.
+- Shortened the width of app logo to fit responsive layout.
+
 ### Version 3.0.6 (November 11, 2023)
 - New login page UI.
 

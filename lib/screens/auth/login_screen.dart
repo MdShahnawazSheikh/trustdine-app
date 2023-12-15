@@ -5,6 +5,7 @@ import 'package:trustdine/backend/central_api.dart'; // Assuming loginUser is im
 import 'package:trustdine/components/CustomTextField.dart';
 import 'package:trustdine/components/LargeCustomButton.dart';
 import 'package:trustdine/main.dart';
+import 'package:trustdine/screens/auth/signup_screen.dart';
 import 'package:trustdine/storage/cache.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -55,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (screenWidth > screenHeight) {
       logoWidth = screenHeight / 3;
     }
-    Color textColor = Color.fromARGB(230, 230, 237, 243);
+    Color textColor = Colors.white;
     return Scaffold(
       backgroundColor: Color(0xFF0d154d),
       body: SingleChildScrollView(
@@ -117,10 +118,31 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: LargeCustomButton(
                             yourText: "Login",
                             onPressedFunction: _handleLogin,
-                            buttonColor: Color.fromARGB(230, 233, 245, 255),
+                            buttonColor: Colors.white,
                             textColor: Color(0xFF0d154d),
                           ),
                         ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Center(
+                    child: TextButton(
+                      child: Text(
+                        "Don't have an account?",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .copyWith(color: Colors.white),
+                      ),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpScreen(),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

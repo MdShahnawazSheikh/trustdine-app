@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:trustdine/apiData.dart';
 import 'package:trustdine/backend/api_processes.dart';
-import 'package:trustdine/components/NetworkProductCardTwoRow.dart';
 import 'package:trustdine/components/app_bar.dart';
 import 'package:trustdine/components/circular_image_card.dart';
 import 'package:trustdine/components/section_title.dart';

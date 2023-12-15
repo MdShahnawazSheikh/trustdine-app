@@ -31,84 +31,87 @@ class _ProductDetailsState extends State<ProductDetails> {
     double image_height =
         screenHeight > screenWidth ? screenHeight / 3.5 : screenHeight / 1.8;
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            backgroundColor: Colors.transparent,
-            automaticallyImplyLeading: false,
-            expandedHeight: image_height,
-            flexibleSpace: FlexibleSpaceBar(
-              background: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    bottomRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20)),
-                child: CachedNetworkImage(
-                  imageUrl: widget.image,
-                  fit: BoxFit.cover,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              automaticallyImplyLeading: false,
+              expandedHeight: image_height,
+              flexibleSpace: FlexibleSpaceBar(
+                background: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20)),
+                  child: CachedNetworkImage(
+                    imageUrl: widget.image,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              leading: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: SvgPicture.asset("assets/icons/back.svg"),
+                  ),
                 ),
               ),
             ),
-            leading: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: SvgPicture.asset("assets/icons/back.svg"),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 15),
+            ),
+            SliverToBoxAdapter(
+              child: DetailsCard(
+                image: widget.image,
+                name: widget.name,
+                price: widget.price,
+                category: widget.category,
+                size: widget.size,
+                description: widget.description,
+                type: widget.type,
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 30,
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 15),
+                child: Text(
+                  "Products You Might Like",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      ?.copyWith(color: Colors.grey.shade800),
                 ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(height: 15),
-          ),
-          SliverToBoxAdapter(
-            child: DetailsCard(
-              image: widget.image,
-              name: widget.name,
-              price: widget.price,
-              category: widget.category,
-              size: widget.size,
-              description: widget.description,
-              type: widget.type,
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 30,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 15),
-              child: Text(
-                "Products You Might Like",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(color: Colors.grey.shade800),
+            SliverList(
+                delegate: SliverChildBuilderDelegate(
+              childCount: FeaturedFoods.length,
+              (context, index) => Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
+                child: ProductTileCard(
+                  builderObject: FeaturedFoods,
+                  imgSize: 60,
+                  image: FeaturedFoods[index]['image'],
+                  title: FeaturedFoods[index]['name'],
+                  price: FeaturedFoods[index]['price'],
+                  screenWidth: screenWidth,
+                  size: FeaturedFoods[index]['size'],
+                  type: FeaturedFoods[index]['type'],
+                ),
               ),
-            ),
-          ),
-          SliverList(
-              delegate: SliverChildBuilderDelegate(
-            childCount: FeaturedFoods.length,
-            (context, index) => Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
-              child: ProductTileCard(
-                builderObject: FeaturedFoods,
-                imgSize: 60,
-                image: FeaturedFoods[index]['image'],
-                title: FeaturedFoods[index]['name'],
-                price: FeaturedFoods[index]['price'],
-                screenWidth: screenWidth,
-                size: FeaturedFoods[index]['size'],
-                type: FeaturedFoods[index]['type'],
-              ),
-            ),
-          ))
-        ],
+            ))
+          ],
+        ),
       ),
     );
   }
